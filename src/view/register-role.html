@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register Rolê</title>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-black font-sans text-white">
+    <header class="bg-black w-full h-14 flex justify-center items-center">
+
+      <div class="flex bg-black w-4/5 h-14 border-b-2 border-neutral-500">
+        <nav class="flex items-center w-3/4">
+          <ul class="flex">
+            <li class="mr-6 uppercase hover:text-violet-500 cursor-pointer">
+             <a href="index.html">Home</a>
+            </li>
+            <li class="mr-6 uppercase hover:text-violet-500 cursor-pointer">
+              <a href="report.html">Report</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="flex justify-center w-full bg-black">
+      <div class="w-4/5">
+        <div class="flex justify-center items-center h-14 mt-6">
+          <h1 class="text-3xl	font-bold uppercase">Register Rolê</h1>
+        </div>
+
+        <div class="flex justify-center mt-6 rounded">
+          <div class="w-1/2 mb-16 p-6 text-xl border-2 border-neutral-500 rounded">
+            <form action="preenche com alguma coisa de php"
+                  class=""
+            >
+              <label for="name" class="flex flex-col mb-6">
+                Name :
+                <input id="name" type="text" placeholder="Enter rolê name " class="flex w-full mt-2 p-2 text-black outline-none rounded">
+              </label>
+              <label for="description" class="flex flex-col mb-6">
+                Description :
+                <textarea name="description" id="description" rows="2" maxlength="800" class="mt-2 text-black outline-none rounded"></textarea>
+              </label>
+              <label class="">
+                <div class="flex items-center justify-between mb-6">
+                  <div class="flex">
+                    <label for="" class="flex flex-col">
+                      City :
+                      <select name="city" id="city" class="mt-2 text-black outline-none rounded">
+                        <option value="GP" class="">Guarapuava</option>
+                        <option value="SP" class="">São Paulo</option>
+                        <option value="BA" class="">Baia</option>
+                        <option value="RJ" class="">Rio de Janeiro</option>
+
+                      </select>
+                    </label>
+                  </div>
+                  <div class="">
+                    <label for="horary" class="flex flex-col">
+                      Horary :
+                      <select name="horary" id="horary" class="mt-2 text-black outline-none rounded">
+                        <option value="morning" class="">Morning</option>
+                        <option value="night" class="">Night</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="">
+                    <label for="classification" class="flex flex-col">
+                      Classification :
+                      <select name="classification" id="classification" class="mt-2 text-black outline-none rounded">
+                        <option value="0" class="">0</option>
+                        <option value="1" class="">1</option>
+                        <option value="2" class="">2</option>
+                        <option value="3" class="">3</option>
+                        <option value="4" class="">4</option>
+                        <option value="5" class="">5</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+              </label>
+              <label for="image" class="flex flex-col mb-6">
+                Image :
+                <input class="mt-2" type="file" id="image" name="image" accept="image/png, image/jpeg">
+              </label>
+              <button class="w-full p-2 bg-violet-500 hover:bg-violet-700 rounded">
+                Register
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="h-14"></div>
+      </div>
+    </main>
+  </body>
+</html>

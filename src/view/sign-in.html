@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In</title>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-black font-sans text-white">
+    <header class="bg-black w-full h-14 flex justify-center items-center">
+
+      <div class="flex bg-black w-4/5 h-14 border-b-2 border-neutral-500">
+        <nav class="flex items-center w-3/4">
+          <ul class="flex">
+            <li class="mr-6 uppercase hover:text-violet-500 cursor-pointer">
+             <a href="index.html">Home</a>
+            </li>
+            <li class="mr-6 uppercase hover:text-violet-500 cursor-pointer">
+              <a href="report.html">Report</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="flex items-center flex-row-reverse w-2/5 text-black">
+          <a class="w-16 ml-6 text-center text-sm font-medium hover:text-white bg-white hover:bg-violet-500 rounded outline-none"
+             href="sign-up.html">
+             Sign up
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex justify-center w-full bg-black">
+      <div class="w-4/5">
+        <div class="flex justify-center items-center h-14 mt-6">
+          <h1 class="text-3xl	font-bold uppercase">Sign In</h1>
+        </div>
+
+        <div class="flex justify-center items-center  mt-6  rounded">
+          <div class="w-1/2 h-4/5 p-6 border-2 border-neutral-500 rounded">
+            <form action="test"
+                  class=""
+            >
+              <label for="email" class="flex flex-col mb-6 text-xl">
+                Email :
+                <input id="email" type="email" placeholder="Enter your email " class="flex w-full mt-2 p-2 text-black outline-none rounded">
+              </label>
+              <label for="password" class="flex flex-col mb-6 text-xl">
+                Password :
+                <input id="password" type="password" placeholder="Enter your password " class="flex w-full mt-2 p-2 text-black outline-none rounded">
+              </label>
+              <button class="w-full p-2 bg-violet-500 hover:bg-violet-700 rounded">
+                Sign in
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
