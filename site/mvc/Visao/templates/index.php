@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title><?= APLICACAO_NOME ?></title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register City</title>
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
@@ -23,37 +23,47 @@
         <nav class="flex items-center w-3/4">
           <ul class="flex">
             <li class="mr-6 uppercase hover:text-violet-500 cursor-pointer">
-             <a href="index.html" >Home</a>
+             <a href="<?= URL_RAIZ . 'home' ?>">Home</a>
             </li>
             <li class="mr-6 uppercase hover:text-violet-500 cursor-pointer">
-              <a href="report.html">Report</a>
+              <!-- <a href="report.html">Report</a> -->
+              <a href="<?= URL_RAIZ . 'report' ?>">Report</a>
             </li>
           </ul>
         </nav>
+
+        <div class="flex items-center justify-end w-2/5 text-black">
+          <a
+            class="w-16 ml-6 text-center text-sm font-medium hover:text-white bg-white hover:bg-violet-500 rounded outline-none"
+            href="<?= URL_RAIZ . 'sign-in' ?>"
+          >
+             Sign in
+          </a>
+
+          <a
+            class="w-16 ml-6 text-center text-sm font-medium hover:text-white bg-white hover:bg-violet-500 rounded outline-none"
+            href="<?= URL_RAIZ . 'sign-up' ?>"
+          >
+             Sign up
+          </a>
+
+          <a
+            class="w-16 ml-6 text-center text-sm font-medium hover:text-white bg-white hover:bg-violet-500 rounded outline-none"
+            href="<?= URL_RAIZ . 'home' ?>"
+          >
+              Sign out
+          </a>
+        </div>
       </div>
     </header>
 
     <main class="flex justify-center w-full bg-black">
       <div class="w-4/5">
         <div class="flex justify-center items-center h-14 mt-6">
-          <h1 class="text-3xl	font-bold uppercase">Register City</h1>
+          <h1 class="text-3xl	font-bold uppercase">Rollês List</h1>
         </div>
 
-        <div class="flex justify-center mt-6 rounded">
-          <div class="w-1/2 h-4/5 p-6 border-2 border-neutral-500 rounded">
-            <form action="preenche com alguma coisa de php"
-                  class=""
-            >
-              <label for="city" class="flex flex-col mb-6 text-xl">
-                City *
-                <input id="city" type="text" placeholder="Enter city name " class="flex w-full mt-2 p-2 text-black outline-none rounded">
-              </label>
-              <button class="w-full p-2 bg-violet-500 hover:bg-violet-700 rounded">
-                Register
-              </button>
-            </form>
-          </div>
-        </div>
+        <?php $this->imprimirConteudo() ?>
       </div>
     </main>
   </body>
