@@ -1,30 +1,36 @@
 <?php
 
 $rotas = [
-  '/home' => [
-      'GET' => '\Controlador\HomeControlador#index',
+  '/' => [
+    'GET' => '\Controlador\HomeControlador#index',
   ],
   '/report' => [
-    'GET' => '\Controlador\ReportControlador#show',
+    'GET' => '\Controlador\ReportControlador#index',
   ],
   '/sign-in' => [
     'GET' => '\Controlador\SignInControlador#create',
     'POST' => '\Controlador\SignInControlador#storage',
-    'DELETE' => '\Controlador\SignInControlador#destruir',
+    'DELETE' => '\Controlador\SignInControlador#delete',
   ],
-  '/sign-up' => [
-    'GET' => '\Controlador\SignUpControlador#create',
-    'POST' => '\Controlador\SignUpControlador#storage',
+  '/users/create' => [
+    'GET' => '\Controlador\UserControlador#create',
+  ],
+  '/users' => [
+    'POST' => '\Controlador\UserControlador#storage',
+  ],
+  '/users/success' => [
+    'GET' => '\Controlador\UserControlador#success',
+  ],
+  '/rolles/create' => [
+    'GET' => '\Controlador\RollesControlador#create',
   ],
   '/rolles' => [
-    'GET' => '\Controlador\RollesControlador#create',
     'POST' => '\Controlador\RollesControlador#storage',
   ],
-  '/cities' => [
+  '/cities/create' => [
     'GET' => '\Controlador\CitiesControlador#create',
+  ],
+  '/cities' => [
     'POST' => '\Controlador\CitiesControlador#storage',
   ],
-  // '/users' => [
-  //   'POST' => '\Controlador\UsersControlador#storage',
-  // ],
 ];

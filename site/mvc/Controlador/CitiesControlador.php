@@ -1,8 +1,7 @@
 <?php
 namespace Controlador;
 
-use \Framework\DW3Sessao;
-use \Modelo\User;
+use Modelo\City;
 
 class CitiesControlador extends Controlador
 {
@@ -13,6 +12,8 @@ class CitiesControlador extends Controlador
 
   public function storage()
   {
-    // $this->visao('cities/create.php');
+    $city = new City($_POST['name']);
+    $city->save();
+    $this->redirecionar(URL_RAIZ . '');
   }
 }

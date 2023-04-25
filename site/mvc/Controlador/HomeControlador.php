@@ -6,6 +6,6 @@ class HomeControlador extends Controlador
 {
   public function index()
   {
-    $this->visao('rolles/list.php');
+    $this->visao('rolles/index.php');
   }
 }

@@ -49,7 +49,7 @@ class City extends Modelo
     $registers = DW3BancoDeDados::query(self::SEARCH_ALL);
     $cities = [];
     foreach ($registers as $register) {
-      $cities[] = new City($register['id'], $register['name']);
+      $cities[] = new City($register['name'], $register['id']);
     }
     return $cities;
   }

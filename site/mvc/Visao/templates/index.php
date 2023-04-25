@@ -23,10 +23,9 @@
         <nav class="flex items-center w-3/4">
           <ul class="flex">
             <li class="mr-6 uppercase hover:text-violet-500 cursor-pointer">
-             <a href="<?= URL_RAIZ . 'home' ?>">Home</a>
+             <a href="<?= URL_RAIZ?>">Home</a>
             </li>
             <li class="mr-6 uppercase hover:text-violet-500 cursor-pointer">
-              <!-- <a href="report.html">Report</a> -->
               <a href="<?= URL_RAIZ . 'report' ?>">Report</a>
             </li>
           </ul>
@@ -42,14 +41,14 @@
 
           <a
             class="w-16 ml-6 text-center text-sm font-medium hover:text-white bg-white hover:bg-violet-500 rounded outline-none"
-            href="<?= URL_RAIZ . 'sign-up' ?>"
+            href="<?= URL_RAIZ . 'users/create' ?>"
           >
              Sign up
           </a>
 
           <a
             class="w-16 ml-6 text-center text-sm font-medium hover:text-white bg-white hover:bg-violet-500 rounded outline-none"
-            href="<?= URL_RAIZ . 'home' ?>"
+            href="<?= URL_RAIZ?>"
           >
               Sign out
           </a>

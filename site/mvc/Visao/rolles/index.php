@@ -1,32 +1,36 @@
 <div class="flex mt-6 ">
   <div class="flex justify-around items-center h-14 w-full rounded bg-violet-500">
-    <div title="Register Rolê" class="">
-      <a href="<?= URL_RAIZ . 'rolles' ?>">
+    <div title="Register Rolê">
+      <a href="<?= URL_RAIZ . 'rolles/create' ?>">
         <i class="fa-solid fa-circle-plus text-xl text-black hover:text-white"></i>
       </a>
     </div>
-    <div title="Register City" class="">
-      <a href="<?= URL_RAIZ . 'cities' ?>">
+    <div title="Register City">
+      <a href="<?= URL_RAIZ . 'cities/create' ?>">
         <i class="fa-solid fa-square-plus text-xl text-black hover:text-white"></i>
       </a>
     </div>
-    <div class="">
+    <div>
       <div title="Sort By City" class="flex items-center relative">
         <i class="fa-sharp fa-solid fa-map-location-dot w-6 text-xl text-black"></i>
-        <select class="absolute left-3 bg-transparent w-1 text-black text-xl h-6 outline-none rounded cursor-pointer">
-          <option value="select" selected>Select</option>
-          <option value="guarapuava">Guarapuava</option>
-          <option value="bahia">Bahia</option>
-          <option value="acre">Acre</option>
+        <select name="cityId" id="cityId" class="absolute left-3 bg-transparent w-1 text-black text-xl h-6 outline-none rounded cursor-pointer">
+          <?php foreach ($cities as $city) : ?>
+            <?php $selected = $this->getPost('cityId') == $city->getId() ? 'selected' : '' ?>
+            <option value="<?= $city->getId() ?>" <?= $selected ?>><?= $city->getNome() ?></option>
+            <!-- <option value="select" selected>Select</option>
+            <option value="guarapuava">Guarapuava</option>
+            <option value="bahia">Bahia</option>
+            <option value="acre">Acre</option> -->
+          <?php endforeach ?>
         </select>
       </div>
     </div>
-    <div title="Sort By Highest Score" class="">
+    <div title="Sort By Highest Score">
       <button>
         <i class="fa-solid fa-star text-xl text-black hover:text-white"></i>
       </button>
     </div>
-    <div title="Sort Alphabetically" class="">
+    <div title="Sort Alphabetically">
       <button>
         <i class="fa-solid fa-arrow-down-a-z text-xl text-black hover:text-white"></i>
       </button>

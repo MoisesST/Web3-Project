@@ -18,9 +18,9 @@ class User extends Modelo
   private $hashedPassword;
 
   public function __construct(
-    $name,
     $email,
     $hashedPassword,
+    $name = null,
     $id = null
   ) {
     $this->id = $id;
@@ -99,9 +99,9 @@ class User extends Modelo
     $command->execute();
     $register = $command->fetch();
     return new User(
-      $register['nome'],
       $register['email'],
       '',
+      $register['nome'],
       $register['id']
     );
   }
@@ -115,9 +115,9 @@ class User extends Modelo
     $user = null;
     if ($register) {
       $user = new User(
-        $register['name'],
         $register['email'],
         '',
+        $register['name'],
         $register['id']
       );
       $user->password = $register['password'];

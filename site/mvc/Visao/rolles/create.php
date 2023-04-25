@@ -1,17 +1,30 @@
 <div class="flex justify-center mt-6 rounded">
   <div class="w-1/2 mb-16 p-6 text-xl border-2 border-neutral-500 rounded">
-    <form
-      action="<?= URL_RAIZ . 'algumacoisa' ?>"
-      method="post" class=""
-    >
+    <form action="<?= URL_RAIZ . 'rolles' ?>" method="post">
       <label for="name" class="flex flex-col mb-6">
         Name *
-        <input id="name" type="text" placeholder="Enter rolê name " class="flex w-full mt-2 p-2 text-black outline-none rounded">
+        <input
+          id="name"
+          name="name"
+          type="text"
+          placeholder="Enter rolê name"
+          class="flex w-full mt-2 p-2 text-black outline-none rounded"
+        >
       </label>
+
       <label for="description" class="flex flex-col mb-6">
         Description *
-        <textarea name="description" id="description" rows="2" maxlength="800" class="mt-2 text-black outline-none rounded"></textarea>
+        <textarea
+          id="description"
+          name="description"
+          type="text"
+          placeholder="Enter rolê name"
+          rows="2"
+          maxlength="800"
+          class="mt-2 p-2 text-black outline-none rounded"
+        ></textarea>
       </label>
+
       <label class="">
         <div class="flex items-center justify-between mb-6">
           <div class="flex">
@@ -25,6 +38,7 @@
               </select>
             </label>
           </div>
+
           <div class="">
             <label for="horary" class="flex flex-col">
               Horary *
@@ -34,6 +48,7 @@
               </select>
             </label>
           </div>
+
           <div class="">
             <label for="classification" class="flex flex-col">
               Classification *
@@ -49,10 +64,12 @@
           </div>
         </div>
       </label>
+
       <label for="image" class="flex flex-col mb-6">
         Image *
         <input class="mt-2" type="file" id="image" name="image" accept="image/png, image/jpeg">
       </label>
+
       <button class="w-full p-2 bg-violet-500 hover:bg-violet-700 rounded">
         Register
       </button>

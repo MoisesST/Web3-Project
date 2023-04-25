@@ -1,13 +1,10 @@
 <?php
 namespace Controlador;
 
-use \Framework\DW3Sessao;
-use \Modelo\User;
-
 class ReportControlador extends Controlador
 {
-  public function show()
+  public function index()
   {
-    $this->visao('report/report.php');
+    $this->visao('report/index.php');
   }
 }

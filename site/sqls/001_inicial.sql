@@ -29,3 +29,5 @@ CREATE TABLE rolles ( -- roles é uma palavra reservada do mysql
   FOREIGN KEY (city_id) REFERENCES cities(id)
 )
 ENGINE = InnoDB;
+
+INSERT INTO cities(name) VALUES ('Guarapuava'), ('Maringá'), ('Cascavel');
