@@ -6,6 +6,7 @@
         <input
           id="email"
           name="email"
+          value="<?= $this->getPost('email') ?>"
           type="email"
           placeholder="Enter your email"
           class="flex w-full mt-2 p-2 text-black outline-none rounded"
@@ -16,9 +17,8 @@
         Password *
         <input
           id="password"
-          type="password"
           name="password"
-          value="<?= $this->getPost('email') ?>"
+          type="password"
           placeholder="Enter your password"
           class="flex w-full mt-2 p-2 text-black outline-none rounded"
         >

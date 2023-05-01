@@ -32,26 +32,36 @@
         </nav>
 
         <div class="flex items-center justify-end w-2/5 text-black">
-          <a
-            class="w-16 ml-6 text-center text-sm font-medium hover:text-white bg-white hover:bg-violet-500 rounded outline-none"
-            href="<?= URL_RAIZ . 'sign-in' ?>"
-          >
-             Sign in
-          </a>
+          <?php if ($this->isLoggedIn() === null) : ?>
+            <a
+              class="w-16 ml-6 text-center text-sm font-medium hover:text-white bg-white hover:bg-violet-500 rounded outline-none"
+              href="<?= URL_RAIZ . 'sign-in' ?>"
+            >
+               Sign in
+            </a>
 
-          <a
-            class="w-16 ml-6 text-center text-sm font-medium hover:text-white bg-white hover:bg-violet-500 rounded outline-none"
-            href="<?= URL_RAIZ . 'users/create' ?>"
-          >
-             Sign up
-          </a>
-
-          <a
-            class="w-16 ml-6 text-center text-sm font-medium hover:text-white bg-white hover:bg-violet-500 rounded outline-none"
-            href="<?= URL_RAIZ?>"
-          >
-              Sign out
-          </a>
+            <a
+              class="w-16 ml-6 text-center text-sm font-medium hover:text-white bg-white hover:bg-violet-500 rounded outline-none"
+              href="<?= URL_RAIZ . 'users/create' ?>"
+            >
+               Sign up
+            </a>
+          <?php else : ?>
+            <form
+              action="<?= URL_RAIZ . 'sign-in' ?>"
+              method="post"
+              class="flex"
+            >
+              <input type="hidden" name="_metodo" value="DELETE">
+              <a
+                class="w-16 ml-6 text-center text-sm font-medium hover:text-white bg-white hover:bg-violet-500 rounded outline-none"
+                onclick="event.preventDefault();
+                this.parentNode.submit()"
+              >
+                Sign out
+              </a>
+            </form>
+          <?php endif ?>
         </div>
       </div>
     </header>

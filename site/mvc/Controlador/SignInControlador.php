@@ -14,13 +14,13 @@ class SignInControlador extends Controlador
   public function storage()
   {
     $user = User::fetchEmail($_POST['email']);
-      if ($user && $user->verifyPassword($_POST['password'])) {
-        DW3Sessao::set('user', $user->getId());
-        $this->redirecionar(URL_RAIZ . '');
-      } else {
-        $this->setErros(['sign-in' => 'Usuário ou senha inválido.']);
-        $this->visao('sign-in/create.php');
-      }
+    if ($user && $user->verifyPassword($_POST['password'])) {
+      DW3Sessao::set('user', $user->getId());
+      $this->redirecionar(URL_RAIZ . '');
+    } else {
+      $this->setErros(['sign-in' => 'Usuário ou senha inválido.']);
+      $this->visao('sign-in/create.php');
+    }
   }
 
   public function delete()

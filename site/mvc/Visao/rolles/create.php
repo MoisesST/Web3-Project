@@ -28,15 +28,24 @@
       <label class="">
         <div class="flex items-center justify-between mb-6">
           <div class="flex">
-            <label for="" class="flex flex-col">
+            <!-- <label for="" class="flex flex-col">
               City *
               <select name="city" id="city" class="mt-2 text-black outline-none rounded">
-                <option value="GP" class="">Guarapuava</option>
+                <option value="GP" class=""><?php $cities[0]; ?></option>
                 <option value="SP" class="">São Paulo</option>
                 <option value="BA" class="">Baia</option>
                 <option value="RJ" class="">Rio de Janeiro</option>
-              </select>
-            </label>
+              </select> -->
+
+            <label class="control-label" for="city">Cities</label>
+            <select id="city" name="city" class="form-control" autofocus>
+              <option value="">---</option>
+              <?php foreach ($cities as $city) : ?>
+                  <?php $selected = $this->getGet('city') == $city->getId() ? 'selected' : '' ?>
+                  <option value="<?= $city->getId() ?>" <?= $selected ?>><?= $city->getNome() ?></option>
+              <?php endforeach ?>
+            </select>
+            <!-- </label> -->
           </div>
 
           <div class="">

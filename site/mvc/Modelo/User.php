@@ -101,7 +101,7 @@ class User extends Modelo
     return new User(
       $register['email'],
       '',
-      $register['nome'],
+      $register['name'],
       $register['id']
     );
   }
