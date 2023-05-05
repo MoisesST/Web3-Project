@@ -34,7 +34,12 @@
           <div class="flex">
             <label for="" class="flex flex-col">
               City *
-              <select name="city" id="city" class="mt-2 text-black outline-none rounded">
+              <select
+                id="city"
+                name="city"
+                class="mt-2 text-black outline-none rounded"
+              >
+                <option value="">---</option>
                 <?php foreach ($cities as $city) : ?>
                   <?php
                     $selected = $this->getPost('cityId') == $city->getId()
@@ -52,7 +57,12 @@
           <div >
             <label for="horary" class="flex flex-col">
               Horary *
-              <select name="horary" id="horary" class="mt-2 text-black outline-none rounded">
+              <select
+                id="horary"
+                name="horary"
+                class="mt-2 text-black outline-none rounded"
+              >
+                <option value="">---</option>
                 <option value="1">Morning</option>
                 <option value="0">Night</option>
               </select>
@@ -62,7 +72,12 @@
           <div>
             <label for="classification" class="flex flex-col">
               Classification *
-              <select name="classification" id="classification" class="mt-2 text-black outline-none rounded">
+              <select
+                id="classification"
+                name="classification"
+                class="mt-2 text-black outline-none rounded"
+              >
+                <option value="">---</option>
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -77,7 +92,13 @@
 
       <label for="image" class="flex flex-col mb-6">
         Image *
-        <input class="mt-2" type="file" id="image" name="image" accept="image/png, image/jpeg">
+        <input
+          id="image"
+          name="image"
+          type="file"
+          accept="image/png, image/jpeg"
+          class="mt-2"
+        >
       </label>
 
       <button class="w-full p-2 bg-violet-500 hover:bg-violet-700 rounded">

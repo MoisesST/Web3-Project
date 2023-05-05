@@ -26,6 +26,7 @@ $rotas = [
   ],
   '/rolles' => [
     'POST' => '\Controlador\RollesControlador#storage',
+    'DELETE' => '\Controlador\RollesControlador#delete'
   ],
   '/cities/create' => [
     'GET' => '\Controlador\CitiesControlador#create',

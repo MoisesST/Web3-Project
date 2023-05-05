@@ -10,6 +10,18 @@ class Rolle extends Modelo
 {
   // const SEARCH_ID = 'SELECT * FROM users WHERE id = ? LIMIT 1';
   // const SEARCH_EMAIL = 'SELECT * FROM users WHERE email = ? LIMIT 1';
+
+  const SEARCH_ALL =
+  'SELECT
+    r.id r_id, r.user_id, r.city_id, r.name r_name, r.description, r.horary,
+    r.classification,
+    c.id c_id, c.name c_name,
+    u.id u_id, u.name u_name, u.email, u.password
+  FROM rolles r
+    JOIN cities c ON (r.city_id = c.id)
+    JOIN users u ON (r.user_id = u.id)
+  ORDER BY r.id';
+
   const INSERT = 'INSERT INTO rolles (
     user_id,
     city_id,
@@ -20,31 +32,29 @@ class Rolle extends Modelo
   ) VALUES (?, ?, ?, ?, ?, ?)';
 
   private $id;
-  private $userId;
-  private $cityId;
+  private $user;
   private $name;
   private $description;
+  private $city;
   private $horary;
   private $classification;
-  private $user;
   private $image;
 
   public function __construct(
-    $userId,
-    $cityId,
+    $user,
     $name,
     $description,
     $horary,
     $classification,
     $image = null,
-    $user = null,
+    $city = null,
     $id = null
   ) {
     $this->id = $id;
-    $this->userId = $userId;
-    $this->cityId = $cityId;
+    $this->user = $user;
     $this->name = $name;
     $this->description = $description;
+    $this->city = $city;
     $this->horary = $horary;
     $this->classification = $classification;
     $this->image = $image;
@@ -58,6 +68,31 @@ class Rolle extends Modelo
   public function getName()
   {
     return $this->name;
+  }
+
+  public function getDescription()
+  {
+    return $this->description;
+  }
+
+  public function getHorary()
+  {
+    return $this->horary === 1 ? 'Morning' : 'Night';
+  }
+
+  public function getClassification()
+  {
+    return $this->classification;
+  }
+
+  public function getUser()
+  {
+    return $this->user;
+  }
+
+  public function getCity()
+  {
+    return $this->city;
   }
 
   public function getImagem()
@@ -87,8 +122,8 @@ class Rolle extends Modelo
   {
     DW3BancoDeDados::getPdo()->beginTransaction();
     $command = DW3BancoDeDados::prepare(self::INSERT);
-    $command->bindValue(1, $this->userId, PDO::PARAM_STR);
-    $command->bindValue(2, $this->cityId, PDO::PARAM_STR);
+    $command->bindValue(1, $this->user, PDO::PARAM_STR);
+    $command->bindValue(2, $this->city, PDO::PARAM_STR);
     $command->bindValue(3, $this->name, PDO::PARAM_STR);
     $command->bindValue(4, $this->description, PDO::PARAM_STR);
     $command->bindValue(5, $this->horary, PDO::PARAM_STR);
@@ -97,6 +132,60 @@ class Rolle extends Modelo
     $this->id = DW3BancoDeDados::getPdo()->lastInsertId();
     DW3BancoDeDados::getPdo()->commit();
   }
+
+  public static function fetchAll()
+  {
+    $registers = DW3BancoDeDados::query(self::SEARCH_ALL);
+    $rolles = [];
+    foreach ($registers as $register) {
+      $user = new User(
+        $register['email'],
+        null,
+        $register['u_name'],
+        $register['u_id']
+      );
+      $city = new City(
+        $register['c_name'],
+        $register['c_id']
+      );
+      $rolles[] = new Rolle(
+        $user,
+        $register['r_name'],
+        $register['description'],
+        $register['horary'],
+        $register['classification'],
+        null,
+        $city->getName(),
+        $register['r_id'],
+      );
+    }
+    return $rolles;
+  }
+
+  // public static function buscarTodos($limit = 4, $offset = 0)
+  //   {
+  //       $comando = DW3BancoDeDados::prepare(self::BUSCAR_TODOS);
+  //       $comando->bindValue(1, $limit, PDO::PARAM_INT);
+  //       $comando->bindValue(2, $offset, PDO::PARAM_INT);
+  //       $comando->execute();
+  //       $registros = $comando->fetchAll();
+  //       $objetos = [];
+  //       foreach ($registros as $registro) {
+  //           $usuario = new Usuario(
+  //               $registro['email'],
+  //               '',
+  //               null,
+  //               $registro['u_id']
+  //           );
+  //           $objetos[] = new Mensagem(
+  //               $registro['u_id'],
+  //               $registro['texto'],
+  //               $usuario,
+  //               $registro['m_id']
+  //           );
+  //       }
+  //       return $objetos;
+  //   }
 
   // public static function fetchId($id)
   // {
@@ -110,24 +199,5 @@ class Rolle extends Modelo
   //     $register['name'],
   //     $register['id']
   //   );
-  // }
-
-  // public static function fetchEmail($email)
-  // {
-  //   $command = DW3BancoDeDados::prepare(self::SEARCH_EMAIL);
-  //   $command->bindValue(1, $email, PDO::PARAM_STR);
-  //   $command->execute();
-  //   $register = $command->fetch();
-  //   $user = null;
-  //   if ($register) {
-  //     $user = new User(
-  //       $register['email'],
-  //       '',
-  //       $register['name'],
-  //       $register['id']
-  //     );
-  //     $user->password = $register['password'];
-  //   }
-  //   return $user;
   // }
 }
