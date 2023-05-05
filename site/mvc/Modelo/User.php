@@ -100,7 +100,7 @@ class User extends Modelo
     $register = $command->fetch();
     return new User(
       $register['email'],
-      '',
+      null,
       $register['name'],
       $register['id']
     );
@@ -116,7 +116,7 @@ class User extends Modelo
     if ($register) {
       $user = new User(
         $register['email'],
-        '',
+        null,
         $register['name'],
         $register['id']
       );

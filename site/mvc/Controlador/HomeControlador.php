@@ -3,15 +3,16 @@
 namespace Controlador;
 
 use \Framework\DW3Sessao;
+use Modelo\City;
 
 class HomeControlador extends Controlador
 {
   public function index()
   {
-    // $this->verificarLogado();
     $this->visao('rolles/index.php', [
-      'usuario' => $this->getUser(),
+      'cities' => City::fetchAll(),
       'mensagem' => DW3Sessao::getFlash('mensagem', null)
+      // 'usuario' => $this->getUser(),
     ]);
   }
 }

@@ -1,8 +1,10 @@
 <?php
+
 namespace Controlador;
 
 use Framework\DW3Sessao;
 use Modelo\City;
+use Modelo\Rolle;
 
 class RollesControlador extends Controlador
 {
@@ -24,11 +26,20 @@ class RollesControlador extends Controlador
     ]);
   }
 
-  public function armazenar()
+  public function storage()
   {
     $this->verificarLogado();
-    $city = new City($_POST['name']);
-    $city->save();
-    $this->redirecionar(URL_RAIZ . 'cities');
+    $image = array_key_exists('image', $_FILES) ? $_FILES['image'] : null;
+    $rolle = new Rolle(
+      DW3Sessao::get('user'),
+      $_POST['city'],
+      $_POST['name'],
+      $_POST['description'],
+      $_POST['horary'],
+      $_POST['classification'],
+      $image
+    );
+    $rolle->save();
+    $this->redirecionar(URL_RAIZ . 'rolles/create');
   }
 }
