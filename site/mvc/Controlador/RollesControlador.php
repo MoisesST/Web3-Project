@@ -11,8 +11,11 @@ class RollesControlador extends Controlador
   public function create()
   {
     $this->verificarLogado();
+    // $rolle = Rolle::fetchId(DW3Sessao::get('user'));
     $this->visao('rolles/create.php', [
       'cities' => City::fetchAll(),
+      // 'user' => $rolle->getUser(),
+      // 'userId' => $rolle->getUserId(),
       'sucesso' => DW3Sessao::getFlash('sucesso')
     ]);
   }
@@ -34,8 +37,19 @@ class RollesControlador extends Controlador
     $this->redirecionar(URL_RAIZ . 'rolles/create');
   }
 
-  public function delete()
+  public function delete($id)
   {
-
+    $this->verificarLogado();
+    $rolle = Rolle::fetchId($id);
+    // echo "\n\n\n" . $rolle->getUserId() . "\n\n\n";
+    // echo "\n\n\n" . $this->getUser() . "\n\n\n";
+    // exit;
+    if ($rolle->getUserId() == $this->getUser()) {
+      Rolle::delete($id);
+      DW3Sessao::setFlash('mensagemFlash', 'Mensagem destruida.');
+    } else {
+      DW3Sessao::setFlash('mensagemFlash', 'Você não pode deletar as mensagens dos outros.');
+    }
+    $this->redirecionar(URL_RAIZ . '');
   }
 }

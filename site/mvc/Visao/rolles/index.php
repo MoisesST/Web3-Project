@@ -26,7 +26,7 @@
         >
           <?php foreach ($cities as $city) : ?>
             <?php
-              $selected = $this->getPost('cityId') == $city->getId()
+              $selected = $this->getPost('city') == $city->getId()
                 ? 'selected'
                 : ''
             ?>
@@ -52,30 +52,36 @@
 
 <?php foreach ($rolles as $rolle) : ?>
   <div class="border-2 border-neutral-500 mt-6 rounded">
-    <div class="flex h-72 m-2 rounded">
+    <div class="flex h-72 ml-2 my-2 rounded">
       <div class="h-full rounded">
         <img
+          src="<?= URL_IMG . $rolle->getImage() ?>"
+          alt="Imagem do rolle"
           class="h-full rounded"
-          src="https://s2.glbimg.com/F7yvdswolNWTG-FHLQdJNiLMelI=/0x0:1600x1200/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2020/t/7/1Fm9BwQ4GgQL5g7ZGblg/shopping.jpg">
-        </img>
+        >
       </div>
 
-      <div class="w-6"></div>
-
-      <div class="flex-grow h-full w-2/4">
+      <div class="flex-grow h-full w-2/4 mx-4">
         <div class="flex justify-between items-center h-14 bg-black text-white">
           <h1 class="text-2xl font-semibold">
             <?= $rolle->getName() ?>
           </h1>
-          <button class="w-8 h-8 ml-6 bg-red-400	rounded hover:bg-red-500 mr-4">
-            <i class="fa-solid fa-trash-can text-black"></i>
-          </button>
+
+          <form
+            action="<?= URL_RAIZ . 'rolles/' . $rolle->getId() ?>"
+            method="post"
+          >
+            <input type="hidden" name="_metodo" value="DELETE">
+            <button class="w-8 h-8 ml-6 bg-red-400 hover:bg-red-500 rounded">
+              <i class="fa-solid fa-trash-can text-black"></i>
+            </button>
+          </form>
         </div>
 
         <div class="flex mt-2">
           <div class="flex-grow flex items-center  h-5 text-white">
             <i class="fa-solid fa-location-dot text-sm"></i>
-            <div class="ml-1"> <?= $rolle->getCity() ?> </div>
+            <div class="ml-1"> <?= $rolle->getCityId() ?> </div>
           </div>
           <div class="flex items-center h-5 ml-6 text-white">
             <i class="fa-solid fa-clock text-sm"></i>
@@ -83,12 +89,12 @@
           </div>
           <div class="flex items-center h-5 ml-6 text-white">
             <i class="fa-solid fa-star text-sm"></i>
-            <div class="ml-1 mr-4"> <?= $rolle->getClassification() ?> </div>
+            <div class="ml-1"> <?= $rolle->getClassification() ?> </div>
           </div>
         </div>
 
-        <div class="mt-6 mr-4">
-          <p class="text-sm text-justify text-neutral-500">
+        <div class="mt-6 mr-">
+          <p class="text-sm text-justify break-all text-neutral-500">
             <?= $rolle->getDescription() ?>
           </p>
         </div>

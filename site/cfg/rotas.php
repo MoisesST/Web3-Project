@@ -18,14 +18,13 @@ $rotas = [
   '/users' => [
     'POST' => '\Controlador\UserControlador#storage',
   ],
-  '/users/success' => [
-    'GET' => '\Controlador\UserControlador#success',
-  ],
   '/rolles/create' => [
     'GET' => '\Controlador\RollesControlador#create',
   ],
   '/rolles' => [
     'POST' => '\Controlador\RollesControlador#storage',
+  ],
+  '/rolles/?' => [
     'DELETE' => '\Controlador\RollesControlador#delete'
   ],
   '/cities/create' => [

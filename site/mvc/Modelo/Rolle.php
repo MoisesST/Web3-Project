@@ -8,11 +8,11 @@ use \Framework\DW3ImagemUpload;
 
 class Rolle extends Modelo
 {
-  // const SEARCH_ID = 'SELECT * FROM users WHERE id = ? LIMIT 1';
-  // const SEARCH_EMAIL = 'SELECT * FROM users WHERE email = ? LIMIT 1';
+  const SEARCH_ID = 'SELECT * FROM rolles WHERE id = ? LIMIT 1';
 
-  const SEARCH_ALL =
-  'SELECT
+  const DELETE = 'DELETE FROM rolles WHERE id = ?';
+
+  const SEARCH_ALL = 'SELECT
     r.id r_id, r.user_id, r.city_id, r.name r_name, r.description, r.horary,
     r.classification,
     c.id c_id, c.name c_name,
@@ -32,32 +32,35 @@ class Rolle extends Modelo
   ) VALUES (?, ?, ?, ?, ?, ?)';
 
   private $id;
-  private $user;
+  private $userId;
   private $name;
   private $description;
-  private $city;
+  private $cityId;
   private $horary;
   private $classification;
   private $image;
+  private $user;
 
   public function __construct(
-    $user,
+    $userId,
     $name,
     $description,
     $horary,
     $classification,
     $image = null,
-    $city = null,
+    $cityId = null,
+    $user = null,
     $id = null
   ) {
     $this->id = $id;
-    $this->user = $user;
+    $this->userId = $userId;
     $this->name = $name;
     $this->description = $description;
-    $this->city = $city;
+    $this->cityId = $cityId;
     $this->horary = $horary;
     $this->classification = $classification;
     $this->image = $image;
+    $this->user = $user;
   }
 
   public function getId()
@@ -85,23 +88,28 @@ class Rolle extends Modelo
     return $this->classification;
   }
 
+  public function getUserId()
+  {
+    return $this->userId;
+  }
+
   public function getUser()
   {
     return $this->user;
   }
 
-  public function getCity()
+  public function getCityId()
   {
-    return $this->city;
+    return $this->cityId;
   }
 
-  public function getImagem()
+  public function getImage()
   {
-    $imagemNome = "{$this->id}.png";
-    if (!DW3ImagemUpload::existe($imagemNome)) {
-      $imagemNome = 'padrao.png';
+    $imageName = "{$this->id}.png";
+    if (!DW3ImagemUpload::existe($imageName)) {
+      $imageName = 'padrao.jpg';
     }
-    return $imagemNome;
+    return $imageName;
   }
 
   private function salvarImagem()
@@ -122,8 +130,8 @@ class Rolle extends Modelo
   {
     DW3BancoDeDados::getPdo()->beginTransaction();
     $command = DW3BancoDeDados::prepare(self::INSERT);
-    $command->bindValue(1, $this->user, PDO::PARAM_STR);
-    $command->bindValue(2, $this->city, PDO::PARAM_STR);
+    $command->bindValue(1, $this->userId, PDO::PARAM_STR);
+    $command->bindValue(2, $this->cityId, PDO::PARAM_STR);
     $command->bindValue(3, $this->name, PDO::PARAM_STR);
     $command->bindValue(4, $this->description, PDO::PARAM_STR);
     $command->bindValue(5, $this->horary, PDO::PARAM_STR);
@@ -156,36 +164,12 @@ class Rolle extends Modelo
         $register['classification'],
         null,
         $city->getName(),
+        null,
         $register['r_id'],
       );
     }
     return $rolles;
   }
-
-  // public static function buscarTodos($limit = 4, $offset = 0)
-  //   {
-  //       $comando = DW3BancoDeDados::prepare(self::BUSCAR_TODOS);
-  //       $comando->bindValue(1, $limit, PDO::PARAM_INT);
-  //       $comando->bindValue(2, $offset, PDO::PARAM_INT);
-  //       $comando->execute();
-  //       $registros = $comando->fetchAll();
-  //       $objetos = [];
-  //       foreach ($registros as $registro) {
-  //           $usuario = new Usuario(
-  //               $registro['email'],
-  //               '',
-  //               null,
-  //               $registro['u_id']
-  //           );
-  //           $objetos[] = new Mensagem(
-  //               $registro['u_id'],
-  //               $registro['texto'],
-  //               $usuario,
-  //               $registro['m_id']
-  //           );
-  //       }
-  //       return $objetos;
-  //   }
 
   // public static function fetchId($id)
   // {
@@ -193,11 +177,46 @@ class Rolle extends Modelo
   //   $command->bindValue(1, $id, PDO::PARAM_INT);
   //   $command->execute();
   //   $register = $command->fetch();
-  //   return new User(
-  //     $register['email'],
-  //     '',
+  //   return new Rolle(
+  //     $register['user_id'],
   //     $register['name'],
+  //     $register['description'],
+  //     $register['horary'],
+  //     $register['classification'],
+  //     null,
+  //     $register['city_id'],
+  //     null,
   //     $register['id']
   //   );
   // }
+
+  public static function fetchId($id)
+  {
+    $command = DW3BancoDeDados::prepare(self::SEARCH_ID);
+    $command->bindValue(1, $id, PDO::PARAM_INT);
+    $command->execute();
+    $rolle = null;
+    $register = $command->fetch();
+    if ($register) {
+      $rolle = new Rolle(
+        $register['user_id'],
+        $register['name'],
+        $register['description'],
+        $register['horary'],
+        $register['classification'],
+        null,
+        $register['city_id'],
+        null,
+        $register['id']
+      );
+    }
+    return $rolle;
+  }
+
+  public static function delete($id)
+  {
+    $command = DW3BancoDeDados::prepare(self::DELETE);
+    $command->bindValue(1, $id, PDO::PARAM_INT);
+    $command->execute();
+  }
 }
