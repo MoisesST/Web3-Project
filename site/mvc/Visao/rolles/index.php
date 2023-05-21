@@ -1,3 +1,7 @@
+<div class="flex justify-center items-center h-14 mt-6">
+  <h1 class="text-3xl	font-bold uppercase"> <?= $title ?> </h1>
+</div>
+
 <div class="flex mt-6 ">
   <div class="flex justify-around items-center h-14 w-full rounded bg-violet-500">
     <div title="Register Rolê">
@@ -50,6 +54,26 @@
   </div>
 </div>
 
+<div class="flex justify-center my-6">
+  <?php if ($successfullyDeleteMessage || $errorDeleteMessage) : ?>
+    <div
+      id="container"
+      class="flex items-center w-full h-12 <?= $successfullyDeleteMessage ? "text-green-800 bg-green-200" : "text-red-800 bg-red-200" ?> rounded"
+    >
+      <button
+        id="close"
+        onclick="handleCloseMessage()"
+        class="mx-6 hover:text-black"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="flex grow">
+        <?= $successfullyDeleteMessage ? $successfullyDeleteMessage : $errorDeleteMessage ?>
+      </div>
+    </div>
+  <?php endif ?>
+</div>
+
 <?php foreach ($rolles as $rolle) : ?>
   <div class="border-2 border-neutral-500 mt-6 rounded">
     <div class="flex h-72 ml-2 my-2 rounded">
@@ -72,9 +96,9 @@
             method="post"
           >
             <input type="hidden" name="_metodo" value="DELETE">
-            <button class="w-8 h-8 ml-6 bg-red-400 hover:bg-red-500 rounded">
-              <i class="fa-solid fa-trash-can text-black"></i>
-            </button>
+              <button class="w-8 h-8 ml-6 bg-red-400 hover:bg-red-500 rounded">
+                <i class="fa-solid fa-trash-can text-black"></i>
+              </button>
           </form>
         </div>
 

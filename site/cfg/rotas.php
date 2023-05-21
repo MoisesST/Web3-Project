@@ -1,9 +1,6 @@
 <?php
 
 $rotas = [
-  '/' => [
-    'GET' => '\Controlador\HomeControlador#index',
-  ],
   '/report' => [
     'GET' => '\Controlador\ReportControlador#index',
   ],
@@ -22,6 +19,7 @@ $rotas = [
     'GET' => '\Controlador\RollesControlador#create',
   ],
   '/rolles' => [
+    'GET' => '\Controlador\RollesControlador#index',
     'POST' => '\Controlador\RollesControlador#storage',
   ],
   '/rolles/?' => [

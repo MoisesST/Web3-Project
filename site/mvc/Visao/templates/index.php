@@ -23,7 +23,7 @@
         <nav class="flex items-center w-3/4">
           <ul class="flex">
             <li class="mr-6 uppercase hover:text-violet-500 cursor-pointer">
-             <a href="<?= URL_RAIZ?>">Home</a>
+             <a href="<?= URL_RAIZ . 'rolles' ?>">Home</a>
             </li>
             <li class="mr-6 uppercase hover:text-violet-500 cursor-pointer">
               <a href="<?= URL_RAIZ . 'report' ?>">Report</a>
@@ -68,12 +68,17 @@
 
     <main class="flex justify-center w-full bg-black">
       <div class="w-4/5">
-        <div class="flex justify-center items-center h-14 mt-6">
-          <h1 class="text-3xl	font-bold uppercase">Rollês List</h1>
-        </div>
-
         <?php $this->imprimirConteudo() ?>
       </div>
     </main>
+
+    <script>
+      const container = document.getElementById('container');
+      const close = document.getElementById('close');
+
+      function handleCloseMessage() {
+        container.style.display = 'none';
+      }
+    </script>
   </body>
 </html>

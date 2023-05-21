@@ -10,7 +10,8 @@ class CitiesControlador extends Controlador
   {
     $this->verificarLogado();
     $this->visao('cities/create.php', [
-      'mensagem' => DW3Sessao::getFlash('mensagem', null)
+      'title' => 'Register City',
+      'message' => DW3Sessao::getFlash('message', null)
     ]);
   }
 
@@ -19,6 +20,7 @@ class CitiesControlador extends Controlador
     $this->verificarLogado();
     $city = new City($_POST['name']);
     $city->save();
+    DW3Sessao::setFlash('message', 'Successfully registered city');
     $this->redirecionar(URL_RAIZ . 'cities/create');
   }
 }

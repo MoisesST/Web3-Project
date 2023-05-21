@@ -1,13 +1,30 @@
-<div class="flex justify-center mt-6 rounded">
+<div class="flex justify-center items-center h-14 mt-6">
+  <h1 class="text-3xl	font-bold uppercase"> <?= $title ?> </h1>
+</div>
+
+<div class="flex justify-center my-6">
+  <?php if ($message) : ?>
+    <div
+      id="container"
+      class="flex items-center w-1/2 h-12 text-green-800 bg-green-200 rounded"
+    >
+      <button
+        id="close"
+        onclick="handleCloseMessage()"
+        class="mx-6 hover:text-black"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="flex grow">
+        <?= $message ?>
+      </div>
+    </div>
+  <?php endif ?>
+</div>
+
+<div class="flex justify-center">
   <div class="w-1/2 h-4/5 p-6 border-2 border-neutral-500 rounded">
     <form action="<?= URL_RAIZ . 'cities' ?>" method="post">
-      <?php if ($mensagem) : ?>
-        <div class="h-2 bg-violet-500">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <?= $mensagem ?>
-        </div>
-      <?php endif ?>
-
       <label for="city" class="flex flex-col mb-6 text-xl">
         City *
         <input

@@ -1,3 +1,7 @@
+<div class="flex justify-center items-center h-14 mt-6">
+  <h1 class="text-3xl	font-bold uppercase"> <?= $title ?> </h1>
+</div>
+
 <div class="border-2 border-neutral-500 mt-6 rounded">
   <div class="m-2 rounded">
     <div class="flex justify-around mb-6 py-6 text-black bg-violet-500 rounded">
