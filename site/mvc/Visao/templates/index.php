@@ -34,17 +34,19 @@
         <div class="flex items-center justify-end w-2/5 text-black">
           <?php if ($this->isLoggedIn() === null) : ?>
             <a
-              class="w-16 ml-6 text-center text-sm font-medium hover:text-white bg-white hover:bg-violet-500 rounded outline-none"
+              class="w-16 ml-6 text-center text-sm font-medium hover:text-white
+                bg-white hover:bg-violet-500 rounded outline-none"
               href="<?= URL_RAIZ . 'sign-in' ?>"
             >
-               Sign in
+              Sign in
             </a>
 
             <a
-              class="w-16 ml-6 text-center text-sm font-medium hover:text-white bg-white hover:bg-violet-500 rounded outline-none"
+              class="w-16 ml-6 text-center text-sm font-medium hover:text-white
+                bg-white hover:bg-violet-500 rounded outline-none"
               href="<?= URL_RAIZ . 'users/create' ?>"
             >
-               Sign up
+              Sign up
             </a>
           <?php else : ?>
             <form
@@ -54,7 +56,9 @@
             >
               <input type="hidden" name="_metodo" value="DELETE">
               <a
-                class="w-16 ml-6 text-center text-sm font-medium hover:text-white bg-white hover:bg-violet-500 rounded outline-none"
+                class="w-16 ml-6 text-center text-sm font-medium
+                  hover:text-white bg-white hover:bg-violet-500 rounded
+                  outline-none"
                 onclick="event.preventDefault();
                 this.parentNode.submit()"
               >
@@ -69,16 +73,19 @@
     <main class="flex justify-center w-full bg-black">
       <div class="w-4/5">
         <div class="flex justify-center items-center h-14 mt-6">
-          <h1 class="text-3xl	font-bold uppercase"> <?= $title ?> </h1>
+          <h1
+            class="text-3xl	font-bold uppercase"> <?= $this->getTitle() ?>
+          </h1>
         </div>
 
-
-
         <div class="flex justify-center my-6">
-          <?php if ($message || $errorMessage) : ?>
+          <?php if ($this->getMessage() || $this->getErrorMessage()) : ?>
             <div
               id="container"
-              class="flex items-center w-full h-12 <?= $message ? "text-green-800 bg-green-200" : "text-red-800 bg-red-200" ?> rounded"
+              class="flex items-center w-full h-12
+              <?= $this->getMessage()
+                ? "text-green-800 bg-green-200"
+                : "text-red-800 bg-red-200" ?> rounded"
             >
               <button
                 id="close"
@@ -88,18 +95,13 @@
                 <i class="fa-solid fa-xmark"></i>
               </button>
               <div class="flex grow">
-                <?= $message ? $message : $errorMessage ?>
+                <?= $this->getMessage()
+                  ? $this->getMessage()
+                  : $this->getErrorMessage() ?>
               </div>
             </div>
           <?php endif ?>
         </div>
-
-
-
-
-
-
-
 
         <?php $this->imprimirConteudo() ?>
       </div>
@@ -108,7 +110,6 @@
     <script>
       const container = document.getElementById('container');
       const close = document.getElementById('close');
-
       function handleCloseMessage() {
         container.style.display = 'none';
       }

@@ -9,7 +9,7 @@ abstract class Controlador extends DW3Controlador
 {
   use ControladorVisao;
 
-  protected $user;
+  protected $user, $title;
 
 	protected function verificarLogado()
   {
@@ -34,5 +34,23 @@ abstract class Controlador extends DW3Controlador
   public function isLoggedIn()
   {
     return $this->getUser();
+  }
+
+  public function getTitle()
+  {
+    return $this->title;
+  }
+
+  public function setTitle($title)
+  {
+    $this->title = $title;
+  }
+
+  public function getMessage() {
+    return DW3Sessao::getFlash('message', null);
+  }
+
+  public function getErrorMessage() {
+    return DW3Sessao::getFlash('errorMessage', null);
   }
 }

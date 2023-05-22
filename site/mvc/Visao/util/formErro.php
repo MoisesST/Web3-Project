@@ -1,5 +1,5 @@
 <?php if ($this->temErro($field)): ?>
-  <div class="mb-6">
+  <div class="my-1 text-sm">
     <span class="text-red-200">
       <?= $this->getErro($field) ?>
     </span>

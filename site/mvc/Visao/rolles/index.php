@@ -1,5 +1,7 @@
 <div class="flex mt-6 ">
-  <div class="flex justify-around items-center h-14 w-full rounded bg-violet-500">
+  <div
+    class="flex justify-around items-center h-14 w-full rounded bg-violet-500"
+  >
     <div title="Register Rolê">
       <a href="<?= URL_RAIZ . 'rolles/create' ?>">
         <i
@@ -22,7 +24,8 @@
         <select
           id="cityId"
           name="cityId"
-          class="absolute left-3 bg-transparent w-1 text-black text-xl h-6 outline-none rounded cursor-pointer"
+          class="absolute left-3 bg-transparent w-1 text-black text-xl h-6
+            outline-none rounded cursor-pointer"
         >
           <?php foreach ($cities as $city) : ?>
             <?php
@@ -44,7 +47,9 @@
     </div>
     <div title="Sort Alphabetically">
       <button>
-        <i class="fa-solid fa-arrow-down-a-z text-xl text-black hover:text-white"></i>
+        <i
+          class="fa-solid fa-arrow-down-a-z text-xl text-black hover:text-white"
+        ></i>
       </button>
     </div>
   </div>

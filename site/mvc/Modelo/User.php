@@ -62,7 +62,7 @@ class User extends Modelo
     return password_verify($hashedPassword, $this->password);
   }
 
-  public function checkErrors()
+  public function verificarErros()
   {
     if (strlen($this->name) < 3) {
       $this->setErroMensagem('name', 'Must be at least 3 characters long.');

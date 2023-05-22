@@ -8,12 +8,8 @@ class SignInControlador extends Controlador
 {
   public function create()
   {
-    $this->visao('sign-in/create.php', [
-      'title' => 'Sign In',
-      // as mensagens não são utilizadas nessa tela, mas, foram colocadas apenas para tirar os warnings
-      'message' => DW3Sessao::getFlash('message', null),
-      'errorMessage' => DW3Sessao::getFlash('errorMessage', null)
-    ]);
+    $this->setTitle('Sign In');
+    $this->visao('sign-in/create.php');
   }
 
   public function storage()

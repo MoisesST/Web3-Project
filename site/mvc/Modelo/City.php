@@ -29,6 +29,13 @@ class City extends Modelo
     return $this->name;
   }
 
+  protected function verificarErros()
+  {
+    if (strlen($this->name) < 3) {
+      $this->setErroMensagem('name', 'Minimum 3 characters.');
+    }
+  }
+
   public function save()
   {
     $this->insert();

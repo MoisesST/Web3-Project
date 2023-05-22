@@ -120,6 +120,35 @@ class Rolle extends Modelo
     }
   }
 
+  public function verificarErros()
+  {
+    if (strlen($this->name) < 3) {
+      $this->setErroMensagem('name', 'Must be at least 3 characters long.');
+    }
+    if (strlen($this->description) < 4) {
+      $this->setErroMensagem('description', 'Must be at least 4 characters long.');
+    }
+    // if ($this->cityId == null) {
+    //   $this->setErroMensagem('city', 'Select a city.');
+    // } elseif (City::fetchId($this->cityId) == null) {
+    //   $this->setErroMensagem('city', 'Invalid city.');
+    // }
+    // if ($this->horary == 0 || $this->horary == 1) {
+    //   $this->setErroMensagem('horary', 'Invalid horary.');
+    // } elseif ($this->horary == null) {
+    //   $this->setErroMensagem('horary', 'Select a horary.');
+    // }
+    // if ($this->classification == null) {
+    //   $this->setErroMensagem('classification', 'Select a classification.');
+    // } elseif ($this->horary >= 0 || $this->horary <= 5) {
+    //   $this->setErroMensagem('classification', 'Invalid classification.');
+    // }
+    if (DW3ImagemUpload::existeUpload($this->image)
+      && !DW3ImagemUpload::isValida($this->image)) {
+      $this->setErroMensagem('image', 'It must be a maximum of 500 KB.');
+    }
+  }
+
   public function save()
   {
     $this->insert();

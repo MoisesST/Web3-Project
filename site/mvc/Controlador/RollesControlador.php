@@ -10,12 +10,10 @@ class RollesControlador extends Controlador
 {
   public function index()
   {
+    $this->setTitle('Rolle List');
     $this->visao('rolles/index.php', [
-      'title' => 'Rolle List',
       'cities' => City::fetchAll(),
-      'rolles' => Rolle::fetchAll(),
-      'message' => DW3Sessao::getFlash('message', null),
-      'errorMessage' => DW3Sessao::getFlash('errorMessage', null)
+      'rolles' => Rolle::fetchAll()
       // 'usuario' => $this->getUser(),
     ]);
   }
@@ -23,9 +21,9 @@ class RollesControlador extends Controlador
   public function create()
   {
     $this->verificarLogado();
+    $this->setTitle('Register Rolle');
     // $rolle = Rolle::fetchId(DW3Sessao::get('user'));
     $this->visao('rolles/create.php', [
-      'title' => 'Register Rolle',
       'cities' => City::fetchAll(),
       // 'user' => $rolle->getUser(),
       // 'userId' => $rolle->getUserId(),
@@ -48,9 +46,14 @@ class RollesControlador extends Controlador
       $image,
       $_POST['city'],
     );
-    $rolle->save();
-    DW3Sessao::setFlash('message', 'Successfully registered rolle');
-    $this->redirecionar(URL_RAIZ . 'rolles/create');
+    if ($rolle->isValido()) {
+      $rolle->save();
+      DW3Sessao::setFlash('message', 'Successfully registered rolle');
+      $this->redirecionar(URL_RAIZ . 'rolles/create');
+    } else {
+      $this->setErros($rolle->getValidacaoErros());
+      $this->visao('rolles/create.php');
+    }
   }
 
   public function delete($id)

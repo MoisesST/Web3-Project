@@ -7,8 +7,8 @@ class ReportControlador extends Controlador
 {
   public function index()
   {
+    $this->setTitle('Report');
     $this->visao('report/index.php', [
-      'title' => 'Report',
       'totalCities' => Report::total(Report::COUNT_CITIES),
       'totalRolles' => Report::total(Report::COUNT_ROLLES),
       'totalHoraryMorning' => Report::total(Report::COUNT_HORARY_MORNING),
