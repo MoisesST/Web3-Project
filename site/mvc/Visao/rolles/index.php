@@ -1,7 +1,3 @@
-<div class="flex justify-center items-center h-14 mt-6">
-  <h1 class="text-3xl	font-bold uppercase"> <?= $title ?> </h1>
-</div>
-
 <div class="flex mt-6 ">
   <div class="flex justify-around items-center h-14 w-full rounded bg-violet-500">
     <div title="Register Rolê">
@@ -52,26 +48,6 @@
       </button>
     </div>
   </div>
-</div>
-
-<div class="flex justify-center my-6">
-  <?php if ($successfullyDeleteMessage || $errorDeleteMessage) : ?>
-    <div
-      id="container"
-      class="flex items-center w-full h-12 <?= $successfullyDeleteMessage ? "text-green-800 bg-green-200" : "text-red-800 bg-red-200" ?> rounded"
-    >
-      <button
-        id="close"
-        onclick="handleCloseMessage()"
-        class="mx-6 hover:text-black"
-      >
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-      <div class="flex grow">
-        <?= $successfullyDeleteMessage ? $successfullyDeleteMessage : $errorDeleteMessage ?>
-      </div>
-    </div>
-  <?php endif ?>
 </div>
 
 <?php foreach ($rolles as $rolle) : ?>

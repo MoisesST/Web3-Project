@@ -14,8 +14,8 @@ class RollesControlador extends Controlador
       'title' => 'Rolle List',
       'cities' => City::fetchAll(),
       'rolles' => Rolle::fetchAll(),
-      'successfullyDeleteMessage' => DW3Sessao::getFlash('successfullyDeleteMessage', null),
-      'errorDeleteMessage' => DW3Sessao::getFlash('errorDeleteMessage', null)
+      'message' => DW3Sessao::getFlash('message', null),
+      'errorMessage' => DW3Sessao::getFlash('errorMessage', null)
       // 'usuario' => $this->getUser(),
     ]);
   }
@@ -29,7 +29,8 @@ class RollesControlador extends Controlador
       'cities' => City::fetchAll(),
       // 'user' => $rolle->getUser(),
       // 'userId' => $rolle->getUserId(),
-      'successMessage' => DW3Sessao::getFlash('successMessage', null),
+      'message' => DW3Sessao::getFlash('message', null),
+      'errorMessage' => DW3Sessao::getFlash('errorMessage', null)
       // 'sucesso' => DW3Sessao::getFlash('sucesso')
     ]);
   }
@@ -48,7 +49,7 @@ class RollesControlador extends Controlador
       $_POST['city'],
     );
     $rolle->save();
-    DW3Sessao::setFlash('successMessage', 'Successfully registered rolle');
+    DW3Sessao::setFlash('message', 'Successfully registered rolle');
     $this->redirecionar(URL_RAIZ . 'rolles/create');
   }
 
@@ -58,9 +59,9 @@ class RollesControlador extends Controlador
     $rolle = Rolle::fetchId($id);
     if ($rolle->getUserId() == $this->getUser()->getId()) {
       Rolle::delete($id);
-      DW3Sessao::setFlash('successfullyDeleteMessage', 'successfully deleted the role.');
+      DW3Sessao::setFlash('message', 'Successfully deleted the rolle.');
     } else {
-      DW3Sessao::setFlash('errorDeleteMessage', 'you cannot delete this rolle.');
+      DW3Sessao::setFlash('errorMessage', 'You cannot delete this rolle.');
     }
     $this->redirecionar(URL_RAIZ . 'rolles');
   }

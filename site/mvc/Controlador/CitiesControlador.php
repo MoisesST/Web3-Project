@@ -11,7 +11,9 @@ class CitiesControlador extends Controlador
     $this->verificarLogado();
     $this->visao('cities/create.php', [
       'title' => 'Register City',
-      'message' => DW3Sessao::getFlash('message', null)
+      'message' => DW3Sessao::getFlash('message', null),
+      // O errorMessage não é utilizado nessa tela, mas, foi colocado apenas para tirar o warning
+      'errorMessage' => DW3Sessao::getFlash('errorMessage', null)
     ]);
   }
 

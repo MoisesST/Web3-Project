@@ -68,6 +68,39 @@
 
     <main class="flex justify-center w-full bg-black">
       <div class="w-4/5">
+        <div class="flex justify-center items-center h-14 mt-6">
+          <h1 class="text-3xl	font-bold uppercase"> <?= $title ?> </h1>
+        </div>
+
+
+
+        <div class="flex justify-center my-6">
+          <?php if ($message || $errorMessage) : ?>
+            <div
+              id="container"
+              class="flex items-center w-full h-12 <?= $message ? "text-green-800 bg-green-200" : "text-red-800 bg-red-200" ?> rounded"
+            >
+              <button
+                id="close"
+                onclick="handleCloseMessage()"
+                class="mx-6 hover:text-black"
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+              <div class="flex grow">
+                <?= $message ? $message : $errorMessage ?>
+              </div>
+            </div>
+          <?php endif ?>
+        </div>
+
+
+
+
+
+
+
+
         <?php $this->imprimirConteudo() ?>
       </div>
     </main>
