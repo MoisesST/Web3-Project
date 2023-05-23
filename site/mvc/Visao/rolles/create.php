@@ -56,11 +56,9 @@
               <select
                 id="city"
                 name="city"
-                value="<?= $this->getPost('city') ?>"
                 class="mt-2 text-black outline-none rounded
                   <?= $this->getHighlightedErrorInputCss('city') ?>"
               >
-                <option value="">---</option>
                 <?php foreach ($cities as $city) : ?>
                   <?php
                     $selected = $this->getPost('city') == $city->getId()
@@ -88,13 +86,15 @@
               <select
                 id="horary"
                 name="horary"
-                value="<?= $this->getPost('horary') ?>"
                 class="mt-2 text-black outline-none rounded
                   <?= $this->getHighlightedErrorInputCss('horary') ?>"
               >
-                <option value="">---</option>
-                <option value="1">Morning</option>
-                <option value="0">Night</option>
+                <?php foreach ($schedules as $value => $horary) : ?>
+                  <option
+                    value="<?= $value ?>"
+                    <?= $this->getPost('horary') == $value ? 'selected' : '' ?>
+                  ><?= $horary ?></option>
+                <?php endforeach ?>
               </select>
               <?php
                 $this->incluirVisao('util/formErro.php', ['field' => 'horary'])
@@ -112,17 +112,16 @@
               <select
                 id="classification"
                 name="classification"
-                value="<?= $this->getPost('classification') ?>"
                 class="mt-2 text-black outline-none rounded
                   <?= $this->getHighlightedErrorInputCss('classification') ?>"
               >
-                <option value="">---</option>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+              <?php for ($i = 0; $i <= 5; $i++) : ?>
+                <option
+                  <?= $this->getPost('classification') == $i
+                    ? 'selected'
+                    : '' ?>
+                ><?= $i ?></option>
+              <?php endfor ?>
               </select>
               <?php
                 $this->incluirVisao('util/formErro.php',

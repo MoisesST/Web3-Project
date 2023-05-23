@@ -10,11 +10,13 @@ class RollesControlador extends Controlador
 {
   public function index()
   {
+    // $cities = City::fetchAll();
+    // print_r($cities);
+    // exit;
     $this->setTitle('Rolle List');
     $this->visao('rolles/index.php', [
       'cities' => City::fetchAll(),
       'rolles' => Rolle::fetchAll()
-      // 'usuario' => $this->getUser(),
     ]);
   }
 
@@ -22,20 +24,19 @@ class RollesControlador extends Controlador
   {
     $this->verificarLogado();
     $this->setTitle('Register Rolle');
-    // $rolle = Rolle::fetchId(DW3Sessao::get('user'));
     $this->visao('rolles/create.php', [
       'cities' => City::fetchAll(),
-      // 'user' => $rolle->getUser(),
-      // 'userId' => $rolle->getUserId(),
+      'schedules' => ['0' => 'Night', '1' => 'Morning'],
       'message' => DW3Sessao::getFlash('message', null),
       'errorMessage' => DW3Sessao::getFlash('errorMessage', null)
-      // 'sucesso' => DW3Sessao::getFlash('sucesso')
     ]);
   }
 
   public function storage()
   {
     $this->verificarLogado();
+    // var_dump($_POST);
+    // exit;
     $image = array_key_exists('image', $_FILES) ? $_FILES['image'] : null;
     $rolle = new Rolle(
       DW3Sessao::get('user'), // $this->getUser()->getId(),
@@ -52,7 +53,7 @@ class RollesControlador extends Controlador
       $this->redirecionar(URL_RAIZ . 'rolles/create');
     } else {
       $this->setErros($rolle->getValidacaoErros());
-      $this->visao('rolles/create.php');
+      $this->create();
     }
   }
 

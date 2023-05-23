@@ -31,18 +31,3 @@ CREATE TABLE rolles ( -- roles é uma palavra reservada do mysql
 ENGINE = InnoDB;
 
 INSERT INTO cities(name) VALUES ('Guarapuava'), ('Maringá'), ('Cascavel');
-
--- erro
--- INSERT INTO rolles
--- (
---   user_id,
---   city_id,
---   name,
---   description,
---   horary,
---   classification
--- )
--- VALUES
---   (1, 3, 'Santo Andre', 'fvvsdvsvfvsvfv', 1, 0),
---   (1, 2, 'SP', 'fvvsdvsvfvsvfv', 0, 3),
---   (1, 1, 'SantoS', 'fvvsdvsvfvsvfv', 1, 4);

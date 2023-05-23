@@ -23,7 +23,7 @@ class CitiesControlador extends Controlador
       $this->redirecionar(URL_RAIZ . 'cities/create');
     } else {
       $this->setErros($city->getValidacaoErros());
-      $this->visao('cities/create.php');
+      $this->create();
     }
   }
 }

@@ -58,7 +58,7 @@ class Rolle extends Modelo
     $this->description = $description;
     $this->cityId = $cityId;
     $this->horary = $horary;
-    $this->classification = $classification;
+    $this->classification = (int) $classification;
     $this->image = $image;
     $this->user = $user;
   }
@@ -128,21 +128,21 @@ class Rolle extends Modelo
     if (strlen($this->description) < 4) {
       $this->setErroMensagem('description', 'Must be at least 4 characters long.');
     }
-    // if ($this->cityId == null) {
-    //   $this->setErroMensagem('city', 'Select a city.');
-    // } elseif (City::fetchId($this->cityId) == null) {
-    //   $this->setErroMensagem('city', 'Invalid city.');
-    // }
-    // if ($this->horary == 0 || $this->horary == 1) {
-    //   $this->setErroMensagem('horary', 'Invalid horary.');
-    // } elseif ($this->horary == null) {
-    //   $this->setErroMensagem('horary', 'Select a horary.');
-    // }
-    // if ($this->classification == null) {
-    //   $this->setErroMensagem('classification', 'Select a classification.');
-    // } elseif ($this->horary >= 0 || $this->horary <= 5) {
-    //   $this->setErroMensagem('classification', 'Invalid classification.');
-    // }
+    if ($this->cityId == null) {
+      $this->setErroMensagem('city', 'Select a city.');
+    } elseif (City::fetchId($this->cityId) == null) {
+      $this->setErroMensagem('city', 'Invalid city.');
+    }
+    if ($this->horary != '0' && $this->horary != '1') {
+      $this->setErroMensagem('horary', 'Invalid horary.');
+    } elseif ($this->horary == null) {
+      $this->setErroMensagem('horary', 'Select a horary.');
+    }
+    if ($this->classification === null) {
+      $this->setErroMensagem('classification', 'Select a classification.');
+    } elseif ($this->classification < 0 || $this->classification > 5) {
+      $this->setErroMensagem('classification', 'Invalid classification.');
+    }
     if (DW3ImagemUpload::existeUpload($this->image)
       && !DW3ImagemUpload::isValida($this->image)) {
       $this->setErroMensagem('image', 'It must be a maximum of 500 KB.');
