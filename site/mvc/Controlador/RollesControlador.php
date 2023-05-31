@@ -10,13 +10,11 @@ class RollesControlador extends Controlador
 {
   public function index()
   {
-    // $cities = City::fetchAll();
-    // print_r($cities);
-    // exit;
     $this->setTitle('Rolle List');
     $this->visao('rolles/index.php', [
       'cities' => City::fetchAll(),
-      'rolles' => Rolle::fetchAll()
+      'rolles' => Rolle::fetchAll(),
+      'registers' => Rolle::fetchRecords($_GET)
     ]);
   }
 
@@ -35,11 +33,9 @@ class RollesControlador extends Controlador
   public function storage()
   {
     $this->verificarLogado();
-    // var_dump($_POST);
-    // exit;
     $image = array_key_exists('image', $_FILES) ? $_FILES['image'] : null;
     $rolle = new Rolle(
-      DW3Sessao::get('user'), // $this->getUser()->getId(),
+      DW3Sessao::get('user'),
       $_POST['name'],
       $_POST['description'],
       $_POST['horary'],

@@ -19,8 +19,7 @@ class Rolle extends Modelo
     u.id u_id, u.name u_name, u.email, u.password
   FROM rolles r
     JOIN cities c ON (r.city_id = c.id)
-    JOIN users u ON (r.user_id = u.id)
-  ORDER BY r.id';
+    JOIN users u ON (r.user_id = u.id)';
 
   const INSERT = 'INSERT INTO rolles (
     user_id,
@@ -172,6 +171,7 @@ class Rolle extends Modelo
 
   public static function fetchAll()
   {
+    // $sql = self::SEARCH_ALL . ' ORDER BY r.id';
     $registers = DW3BancoDeDados::query(self::SEARCH_ALL);
     $rolles = [];
     foreach ($registers as $register) {
@@ -199,25 +199,6 @@ class Rolle extends Modelo
     }
     return $rolles;
   }
-
-  // public static function fetchId($id)
-  // {
-  //   $command = DW3BancoDeDados::prepare(self::SEARCH_ID);
-  //   $command->bindValue(1, $id, PDO::PARAM_INT);
-  //   $command->execute();
-  //   $register = $command->fetch();
-  //   return new Rolle(
-  //     $register['user_id'],
-  //     $register['name'],
-  //     $register['description'],
-  //     $register['horary'],
-  //     $register['classification'],
-  //     null,
-  //     $register['city_id'],
-  //     null,
-  //     $register['id']
-  //   );
-  // }
 
   public static function fetchId($id)
   {
@@ -247,5 +228,80 @@ class Rolle extends Modelo
     $command = DW3BancoDeDados::prepare(self::DELETE);
     $command->bindValue(1, $id, PDO::PARAM_INT);
     $command->execute();
+  }
+
+  public static function fetchRecords($filter = [])
+  {
+    $sqlWhere = '';
+    $parameters = [];
+    if (array_key_exists('city', $filter) && $filter['city'] != '') {
+      $parameters[] = $filter['city'];
+      $sqlWhere .= ' AND c.id = ?';
+    }
+    $sql = self::SEARCH_ALL .
+      ' WHERE TRUE' . $sqlWhere . ' ORDER BY r_name, r.classification';
+    $command = DW3BancoDeDados::prepare($sql);
+    foreach ($parameters as $i => $parameter) {
+      $command->bindValue($i+1, $parameter, PDO::PARAM_STR);
+    }
+    $command->execute();
+    $registers = $command->fetchAll();
+    // var_dump($registers);
+    // print_r($registers);
+    // exit;
+    $rolles = [];
+    if ($registers) {
+      for ($i = 0; $i < count($registers); $i++) {
+        // $rolles[$i] = [
+        //   'r_id' => $registers[$i][0],
+        //   'r_name' => $registers[$i][3],
+        //   'description' => $registers[$i][4],
+        //   'horary' => $registers[$i][5],
+        //   'classification' => $registers[$i][6],
+        //   'c_name' => $registers[$i][8]
+        // ];
+
+        // var_dump('[0] ' . $registers[0][0]);
+        // var_dump('[1] ' . $registers[0][1]);
+        // var_dump('[2] ' . $registers[0][2]);
+        // var_dump('[3] ' . $registers[0][3]);
+        // var_dump('[4] ' . $registers[0][4]);
+        // var_dump('[5] ' . $registers[0][5]);
+        // var_dump('[6] ' . $registers[0][6]);
+        // var_dump('[7] ' . $registers[0][7]);
+        // var_dump('[8] ' . $registers[0][8]);
+        // var_dump('[9] ' . $registers[0][9]);
+        // var_dump('[10] ' . $registers[0][10]);
+        // var_dump('[11] ' . $registers[0][11]);
+        // var_dump('[12] ' . $registers[0][12]);
+        // // var_dump($registers[0][13]);
+        // exit;
+
+        $rolleId = $registers[$i][0];
+        $userId = $registers[$i][1];
+        $rolleName = $registers[$i][3];
+        $description = $registers[$i][4];
+        $horary = $registers[$i][5];
+        $classification = $registers[$i][6];
+        $cityName = $registers[$i][8];
+
+        $rolles[$i] = new Rolle(
+          $userId,
+          $rolleName,
+          $description,
+          $horary,
+          $classification,
+          null,
+          $cityName,
+          null,
+          $rolleId
+        );
+      }
+      // print_r($rolles);
+      // exit;
+      return $rolles;
+    }
+    return null;
+    // return $registers;
   }
 }
