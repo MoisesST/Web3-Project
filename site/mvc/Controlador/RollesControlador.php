@@ -8,13 +8,26 @@ use Modelo\Rolle;
 
 class RollesControlador extends Controlador
 {
+  private function calculatePagination()
+  {
+    $page = array_key_exists('p', $_GET) ? intval($_GET['p']) : 1;
+    $city = array_key_exists('city', $_GET) ? intval($_GET['city']) : null;
+    $limit = 4;
+    $offset = ($page - 1) * $limit;
+    $rolles = Rolle::fetchAll($limit, $offset, $city);
+    $lastPage = ceil(Rolle::countAll($city) / $limit);
+    return compact('page', 'rolles', 'lastPage');
+  }
+
   public function index()
   {
     $this->setTitle('Rolle List');
+    $pagination = $this->calculatePagination();
     $this->visao('rolles/index.php', [
+      'rolles' => $pagination['rolles'],
+      'page' => $pagination['page'],
+      'lastPage' => $pagination['lastPage'],
       'cities' => City::fetchAll(),
-      'rolles' => Rolle::fetchAll(),
-      'registers' => Rolle::fetchRecords($_GET)
     ]);
   }
 

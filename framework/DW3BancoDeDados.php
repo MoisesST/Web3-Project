@@ -8,6 +8,7 @@ class DW3BancoDeDados
     /*
     Exemplo: mysql:host=localhost;port=3306;dbname=meubanco
     */
+    // const DNS_FORMATO = 'mysql:host=localhost;port=3306;dbname=rolles_site';
     const DNS_FORMATO = '%s:host=%s;port=%s;dbname=%s';
     private static $pdo;
     private static $banco;
