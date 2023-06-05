@@ -220,7 +220,8 @@ class Rolle extends Modelo
       $command = DW3BancoDeDados::prepare($sql);
       $command->bindValue(':city', $city, PDO::PARAM_INT);
       $command->execute();
-      $total = $command->fetch();
+      $registers = $command->fetch();
+      $total = $registers;
       return intval($total[0]);
     }
     $registers = DW3BancoDeDados::query(self::COUNT_ALL);
