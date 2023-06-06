@@ -177,7 +177,7 @@ class Rolle extends Modelo
     if ($city) {
       $sql .= ' WHERE c.id = :city';
     }
-    $sql .= ' LIMIT :limit OFFSET :offset';
+    $sql .= ' ORDER BY classification DESC, r.name LIMIT :limit OFFSET :offset';
     $command = DW3BancoDeDados::prepare($sql);
     if ($city) {
       $command->bindValue(':city', $city, PDO::PARAM_INT);
