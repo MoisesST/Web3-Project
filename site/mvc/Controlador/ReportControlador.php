@@ -13,12 +13,18 @@ class ReportControlador extends Controlador
       'totalRolles' => Report::total(Report::COUNT_ROLLES),
       'totalHoraryMorning' => Report::total(Report::COUNT_HORARY_MORNING),
       'totalHoraryNight' => Report::total(Report::COUNT_HORARY_NIGHT),
-      'totalHoraryClassification0' => Report::total(Report::COUNT_CLASSIFICATION_0),
-      'totalHoraryClassification1' => Report::total(Report::COUNT_CLASSIFICATION_1),
-      'totalHoraryClassification2' => Report::total(Report::COUNT_CLASSIFICATION_2),
-      'totalHoraryClassification3' => Report::total(Report::COUNT_CLASSIFICATION_3),
-      'totalHoraryClassification4' => Report::total(Report::COUNT_CLASSIFICATION_4),
-      'totalHoraryClassification5' => Report::total(Report::COUNT_CLASSIFICATION_5),
+      'totalHoraryClassification0' =>
+        Report::total(Report::COUNT_CLASSIFICATION_0),
+      'totalHoraryClassification1' =>
+        Report::total(Report::COUNT_CLASSIFICATION_1),
+      'totalHoraryClassification2' =>
+        Report::total(Report::COUNT_CLASSIFICATION_2),
+      'totalHoraryClassification3' =>
+        Report::total(Report::COUNT_CLASSIFICATION_3),
+      'totalHoraryClassification4' =>
+        Report::total(Report::COUNT_CLASSIFICATION_4),
+      'totalHoraryClassification5' =>
+        Report::total(Report::COUNT_CLASSIFICATION_5),
     ]);
   }
 }

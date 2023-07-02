@@ -57,7 +57,10 @@
 </div>
 
 <?php if (empty($rolles)) : ?>
-  <div class="w-full mt-6 p-6 text-yellow-900 border-2 border-yellow-900 bg-yellow-200 rounded">
+  <div
+    class="w-full mt-6 p-6 text-yellow-900 border-2 border-yellow-900
+      bg-yellow-200 rounded"
+  >
     <span class="">No rolle found in this city.</span>
   </div>
 <?php endif ?>

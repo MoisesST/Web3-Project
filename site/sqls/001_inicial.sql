@@ -1,11 +1,11 @@
 CREATE DATABASE rolles_site COLLATE 'utf8_unicode_ci';
 
 CREATE TABLE users (
-    id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    password CHAR(60) NOT NULL,
-    PRIMARY KEY (id)
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password CHAR(60) NOT NULL,
+  PRIMARY KEY (id)
 )
 ENGINE = InnoDB;
 
@@ -29,5 +29,3 @@ CREATE TABLE rolles ( -- roles é uma palavra reservada do mysql
   FOREIGN KEY (city_id) REFERENCES cities(id)
 )
 ENGINE = InnoDB;
-
-INSERT INTO cities(name) VALUES ('Guarapuava'), ('Maringá'), ('Cascavel');

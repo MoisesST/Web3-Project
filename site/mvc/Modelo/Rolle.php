@@ -127,7 +127,9 @@ class Rolle extends Modelo
       $this->setErroMensagem('name', 'Must be at least 3 characters long.');
     }
     if (strlen($this->description) < 4) {
-      $this->setErroMensagem('description', 'Must be at least 4 characters long.');
+      $this->setErroMensagem(
+        'description', 'Must be at least 4 characters long.'
+      );
     }
     if ($this->cityId == null) {
       $this->setErroMensagem('city', 'Select a city.');
